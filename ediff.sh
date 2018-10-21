@@ -9,7 +9,17 @@ CLEAN_TEMPFILE()
 	rm ${diff_result}
 }
 
+HELP()
+{
+	echo "usage: ediff src1.c src2.c"
+}
+
 #set -x
+if [ $# -ne 2 ] ; then 
+	HELP
+	exit 1
+fi
+
 trap 'CLEAN_TEMPFILE' INT
 old_parse=`mktemp`
 new_parse=`mktemp`
